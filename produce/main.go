@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/olesho/kafka-client/kafka"
+	kafka "github.com/olesho/kafka-client"
 )
 
 var topic = os.Getenv("KAFKA_TOPIC")

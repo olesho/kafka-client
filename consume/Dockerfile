@@ -1,11 +1,9 @@
 FROM golang:latest
 
 RUN go get -u github.com/segmentio/kafka-go
+RUN go get -u github.com/olesho/kafka-client
+#RUN go install github.com/olesho/kafka-client/consume
 
-WORKDIR /go/src/github.com/olesho/kfk2
+#CMD consume
 
-ADD . .
-
-WORKDIR /go/src/github.com/olesho/kfk2/consume/
-
-CMD go run main.go
+CMD /bin/sh

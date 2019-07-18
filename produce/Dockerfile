@@ -1,7 +1,9 @@
 FROM golang:latest
 
 RUN go get -u github.com/segmentio/kafka-go
+RUN go get -u github.com/olesho/kafka-client
 
-ADD . .
+#RUN go install github.com/olesho/kafka-client/produce
+#CMD produce
 
-CMD go run *.go
+CMD /bin/sh
