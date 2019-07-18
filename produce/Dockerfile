@@ -3,7 +3,8 @@ FROM golang:latest
 RUN go get -u github.com/segmentio/kafka-go
 RUN go get -u github.com/olesho/kafka-client
 
-#RUN go install github.com/olesho/kafka-client/produce
-#CMD produce
+WORKDIR /go/github.com/olesho/kafka-client/produce
+COPY . .
 
-CMD /bin/sh
+RUN go install github.com/olesho/kafka-client/produce
+CMD produce

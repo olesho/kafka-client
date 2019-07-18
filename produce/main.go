@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	kafka "github.com/olesho/kafka-client"
@@ -17,5 +18,6 @@ func main() {
 		addr = "172.17.0.4:9092"
 	}
 
+	fmt.Println("KAFKA_ADDR:", addr)
 	kafka.TestPayload(topic, addr)
 }

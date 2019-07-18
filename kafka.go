@@ -118,12 +118,18 @@ func TestPayload(topic, kafkaAddr string) {
 	}
 
 	startTime = startTime.Add(time.Hour * 2)
-	err := visitWriter.WriteMessages(context.Background(), messages...)
-	if err != nil {
-		panic(err)
-	} else {
-		sent += len(messages)
-		fmt.Println("sent", sent)
+	for {
+		err := visitWriter.WriteMessages(context.Background(), messages...)
+		if err == kafka.LeaderNotAvailable {
+			fmt.Println("Leader not available yet")
+			continue
+		}
+		if err != nil {
+			panic(err)
+		} else {
+			sent += len(messages)
+			fmt.Println("sent", sent)
+		}
 	}
 
 	fmt.Println("Done in:", time.Now().Sub(start).Seconds())
